@@ -16,15 +16,16 @@ void uart_char(char c)
 	for (int i = 0; i < 8; i++)
 	{
 	    if (c & 1)
-		PORTB |= (1 << TX);
+			PORTB |= (1 << TX); // Si bit = 1 → sortie HIGH
 	    else
-		PORTB &= ~(1 << TX);
+			PORTB &= ~(1 << TX); // Si bit = 0 → sortie LOW
 
 	    _delay_us(BIT_US);
-	    c >>= 1;
+
+	    c >>= 1;	// Décaler le caractère vers la droite
+					// pour envoyer le bit suivant
 	}
 	//STOP Bit
-	
 	PORTB |= (1 << TX);
 	_delay_us(BIT_US);
 	
@@ -49,8 +50,8 @@ int main(void)
 	while(1)
 	{
 		
-        	uart("coucou\n\r");
-        	_delay_ms(1000);
+		uart("coucou\n\r");
+		_delay_ms(1000);
         	
 	}
 	
