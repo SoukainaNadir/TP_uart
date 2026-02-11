@@ -45,3 +45,11 @@ gtkterm -p /dev/ttyACM0 -s 300
 ## Résultat attendu
 
 Le message "coucou" s'affiche.
+
+## Dépannage
+
+Si problème de permissions :
+```bash
+sudo usermod -a -G dialout $USER
+```
+Puis reconnectez-vous.
